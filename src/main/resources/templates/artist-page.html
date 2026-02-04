@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Artist Manager</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; background-color: #f4f4f4; }
+        table { width: 100%; border-collapse: collapse; background: white; }
+        th, td { padding: 12px; border: 1px solid #ddd; text-align: left; }
+        th { background-color: #007bff; color: white; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        .container { max-width: 800px; margin: auto; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Artist Registry</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Genre</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="artist : ${artistsList}">
+            <td th:text="${artist.id}">1</td>
+            <td th:text="${artist.name}">Artist Name</td>
+            <td th:text="${artist.genre}">Genre</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
