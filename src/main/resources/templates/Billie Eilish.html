@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffffff 0%, #1b1b1b 50%, #000000 100%);
+            background-attachment: fixed;
+            font-family: "Poppins", sans-serif;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            text-align: center;
+            padding: 20px;
+            backdrop-filter: blur(15px);
+        }
+        h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 12px #9a00ff;
+        }
+        a {
+            color: #bb86fc;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        a:hover {
+            color: #e3b3ff;
+            text-shadow: 0 0 10px #bb86fc;
+        }
+        table {
+            margin: 40px auto;
+            width: 70%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+        }
+        th {
+            padding: 15px;
+            font-size: 20px;
+            background: rgba(255, 255, 255, 0.08);
+            text-shadow: 0 0 6px #7a00ff;
+        }
+        td {
+            padding: 14px;
+            font-size: 17px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+        }
+        tr:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transition: 0.3s;
+        }
+        audio {
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+<h1>Billie Eilish — Songs</h1>
+<p><a href="artist-page.html">← Back to Artists</a></p>
+<table>
+    <tr><th>ID</th><th>Song Title</th><th>Play</th></tr>
+    <tr>
+        <td>1</td>
+        <td>Bad Guy</td>
+        <td>
+            <audio controls>
+                <source src="bs songs/billie-eilish-bad-guy.mp3" type="audio/mpeg">
+            </audio>
+        </td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Everything I Wanted</td>
+        <td>
+            <audio controls>
+                <source src="bs songs/Billie_Eilish_-_Everything_I_Wanted_(www.muzofan.net).mp3" type="audio/mpeg">
+            </audio>
+        </td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Therefore I Am</td>
+        <td>
+            <audio controls>
+                <source src="bs songs/Billie_Eilish_-_Therefore_I_Am_(www.muzofan.net).mp3" type="audio/mpeg">
+            </audio>
+        </td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Bury a Friend</td>
+        <td>
+            <audio controls>
+                <source src="bs songs/3c14bb1b571573f85ff0b9463104ebb6.mp3" type="audio/mpeg">
+            </audio>
+        </td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Ocean Eyes</td>
+        <td>
+            <audio controls>
+                <source src="bs songs/Billie Eilish - Ocean Eyes.mp3" type="audio/mpeg">
+            </audio>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

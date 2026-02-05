@@ -3,32 +3,86 @@
 <head>
     <title>Artist Manager</title>
     <style>
-        body { font-family: sans-serif; margin: 40px; background-color: #f4f4f4; }
-        table { width: 100%; border-collapse: collapse; background: white; }
-        th, td { padding: 12px; border: 1px solid #ddd; text-align: left; }
-        th { background-color: #007bff; color: white; }
-        tr:nth-child(even) { background-color: #f2f2f2; }
-        .container { max-width: 800px; margin: auto; }
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: radial-gradient(#ffffff, #322d2d 60%, #000000 100%);
+            background-attachment: fixed;
+            font-family: "Poppins", sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffffff 0%, #1b1b1b 50%, #000000 100%);
+            background-attachment: fixed;
+        }
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            text-align: center;
+            padding: 20px;
+            backdrop-filter: blur(15px);
+        }
+        h1 {
+            font-size: 32px;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            color: #fff;
+            text-shadow: 0 0 10px #9a00ff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+        }
+        th {
+            padding: 15px;
+            font-size: 18px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            text-shadow: 0 0 5px #7a00ff;
+        }
+        td {
+            padding: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 16px;
+        }
+        tr:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transition: 0.3s;
+        }
+        a {
+            color: #bb86fc;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        a:hover {
+            color: #e3b3ff;
+            text-shadow: 0 0 10px #bb86fc;
+        }
     </style>
 </head>
 <body>
 <div class="container">
-    <h2>Artist Registry</h2>
+    <h1>Artists - Click to see Songs</h1>
     <table>
-        <thead>
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Genre</th>
+            <th>Gender</th>
         </tr>
-        </thead>
-        <tbody>
-        <tr th:each="artist : ${artistsList}">
-            <td th:text="${artist.id}">1</td>
-            <td th:text="${artist.name}">Artist Name</td>
-            <td th:text="${artist.genre}">Genre</td>
-        </tr>
-        </tbody>
+        <tr><td>1</td><td><a href="weeknd.html">The Weeknd</a></td><td>Male</td></tr>
+        <tr><td>2</td><td><a href="Dua Lipa.html">Dua Lipa</a></td><td>Female</td></tr>
+        <tr><td>3</td><td><a href="Billie Eilish.html">Billie Eilish</a></td><td>Female</td></tr>
+        <tr><td>4</td><td><a href="Travis Scott.html">Travis Scott</a></td><td>Male</td></tr>
+        <tr><td>5</td><td><a href="Ed Sheeran.html">Ed Sheeran</a></td><td>Male</td></tr>
+        <tr><td>6</td><td><a href="Ariana Grande.html">Ariana Grande</a></td><td>Female</td></tr>
+        <tr><td>7</td><td><a href="Bruno Mars.html">Bruno Mars</a></td><td>Male</td></tr>
     </table>
 </div>
 </body>
