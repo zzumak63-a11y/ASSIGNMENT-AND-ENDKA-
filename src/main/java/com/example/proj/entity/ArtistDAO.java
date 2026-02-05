@@ -2,7 +2,6 @@ package com.example.proj.entity;
 
 
 import com.example.proj.repository.DBConnection;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
