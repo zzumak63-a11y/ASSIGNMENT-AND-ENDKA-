@@ -3,202 +3,248 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Music Manager</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <title>Neon Music App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;900&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --primary: #4f46e5;
-      --primary-hover: #4338ca;
-      --bg-color: #f3f4f6;
-      --card-bg: #ffffff;
-      --text-main: #111827;
-      --text-muted: #6b7280;
-      --danger: #ef4444;
-      --border: #e5e7eb;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-main);
+    /* --- ТВОЙ CSS (ОСНОВА) --- */
+    * {
       margin: 0;
-      padding: 40px 20px;
-      height: 100vh;
+      padding: 0;
       box-sizing: border-box;
     }
+    body {
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top left, #5f00ff, #0b061a 45%, #000 80%);
+      color: white;
+      overflow-x: hidden;
+    }
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: rgba(0,0,0,0.25);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .logo {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      background: linear-gradient(90deg, #9f7bff, #ff4ecd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero {
+      height: 80vh; /* Чуть уменьшил, чтобы контент был выше */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .hero h1 {
+      font-size: 8vw; /* Адаптивный размер */
+      font-weight: 900;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      background: linear-gradient(120deg, #ffffff, #9f7bff, #ff4ecd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glow 3s infinite alternate;
+      text-align: center;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 20px #9f7bff; }
+      to { text-shadow: 0 0 60px #ff4ecd; }
+    }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
+    /* Главный контейнер (Стекло) */
+    .glass-container {
+      width: 90%;
+      max-width: 1400px;
+      margin: -150px auto 100px; /* Наезд на hero секцию */
+      padding: 40px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
+      backdrop-filter: blur(35px);
+      box-shadow: 0 0 80px rgba(159,123,255,0.2);
+      border: 1px solid rgba(255,255,255,0.1);
+
+      /* Сетка для двух колонок */
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-      height: calc(100vh - 80px);
+      grid-template-columns: 1fr 1.5fr;
+      gap: 40px;
+      position: relative;
+      z-index: 10;
     }
 
+    /* --- АДАПТАЦИЯ ИНТЕРФЕЙСА ПОД СТИЛЬ --- */
 
-    .card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      border: 1px solid var(--border);
+    h2 {
+      font-size: 24px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      padding-bottom: 10px;
     }
 
-    .card-header {
-      padding: 20px;
-      border-bottom: 1px solid var(--border);
-      background: #fafafa;
-    }
-
-    .card-header h2 {
-      margin: 0;
-      font-size: 1.25rem;
-      font-weight: 600;
-    }
-
-    .input-group {
-      display: flex;
-      gap: 10px;
-      margin-top: 15px;
-    }
-
+    /* Инпуты в стиле киберпанк */
     input {
       width: 100%;
-      padding: 10px 12px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-size: 0.95rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
-    }
-
-    button {
-      padding: 10px 16px;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      font-weight: 500;
-      transition: all 0.2s;
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      background-color: var(--primary);
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(159, 123, 255, 0.3);
+      padding: 15px;
       color: white;
+      border-radius: 10px;
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 10px;
+      outline: none;
+      transition: 0.3s;
+    }
+    input:focus {
+      border-color: #ff4ecd;
+      box-shadow: 0 0 15px rgba(255, 78, 205, 0.3);
+    }
+    input::placeholder { color: rgba(255,255,255,0.5); }
+
+    /* Кнопки - градиентные и светящиеся */
+    button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: 0.3s;
+      font-family: 'Poppins', sans-serif;
     }
 
-    .btn-primary:hover {
-      background-color: var(--primary-hover);
+    .btn-add {
+      background: linear-gradient(90deg, #9f7bff, #ff4ecd);
+      color: white;
+      width: 100%;
+      margin-top: 5px;
+    }
+    .btn-add:hover {
+      box-shadow: 0 0 20px rgba(255, 78, 205, 0.6);
+      transform: translateY(-2px);
     }
 
     .btn-icon {
-      background: transparent;
-      color: var(--text-muted);
-      padding: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #ff4ecd;
+      padding: 8px 12px;
+      font-size: 14px;
     }
-
     .btn-icon:hover {
-      color: var(--danger);
-      background: #fee2e2;
+      background: rgba(255, 78, 205, 0.2);
+      color: white;
+      box-shadow: 0 0 10px #ff4ecd;
     }
 
-    .list-container {
-      flex: 1;
+    /* Списки (вместо table используем div-ы, стилизованные под строки) */
+    .list-wrap {
+      max-height: 500px;
       overflow-y: auto;
-      padding: 10px;
+      padding-right: 10px;
     }
+
+    /* Скроллбар */
+    .list-wrap::-webkit-scrollbar { width: 6px; }
+    .list-wrap::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
+    .list-wrap::-webkit-scrollbar-thumb { background: #9f7bff; border-radius: 3px; }
 
     .item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 12px 16px;
-      margin-bottom: 8px;
-      background: white;
-      border-radius: 8px;
-      border: 1px solid transparent;
-      transition: all 0.2s;
+      background: rgba(255, 255, 255, 0.05);
+      margin-bottom: 10px;
+      padding: 15px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: 0.3s;
       cursor: pointer;
     }
-
     .item:hover {
-      background-color: #f9fafb;
-      border-color: var(--border);
+      transform: scale(1.02);
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(159, 123, 255, 0.5);
+      box-shadow: 0 0 25px rgba(159, 123, 255, 0.2);
     }
-
     .item.active {
-      background-color: #eef2ff; /* Светло-синий */
-      border-color: var(--primary);
-      box-shadow: 0 2px 4px rgba(79, 70, 229, 0.1);
+      background: linear-gradient(90deg, rgba(159, 123, 255, 0.2), transparent);
+      border-left: 4px solid #ff4ecd;
+      box-shadow: 0 0 30px rgba(159, 123, 255, 0.1);
     }
 
-    .item-content {
-      display: flex;
-      flex-direction: column;
+    .text-group { display: flex; flex-direction: column; }
+    .main-text { font-size: 1.1em; font-weight: 600; color: #fff; }
+    .sub-text { font-size: 0.85em; color: rgba(255,255,255,0.6); }
+
+    /* Анимация появления */
+    .fade-in { animation: fadeIn 0.5s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Скрытие правой части */
+    .hidden { opacity: 0.3; pointer-events: none; filter: blur(2px); transition: 0.3s; }
+
+    @media (max-width: 900px) {
+      .glass-container { grid-template-columns: 1fr; margin-top: 20px; }
+      .hero { height: 50vh; }
+      .hero h1 { font-size: 50px; }
     }
-
-    .item-title {
-      font-weight: 600;
-      color: var(--text-main);
-    }
-
-    .item-subtitle {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-
-    .hidden {
-      opacity: 0.5;
-      pointer-events: none;
-      filter: grayscale(100%);
-    }
-
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
-
   </style>
 </head>
 <body>
 
-<div class="container">
+<div class="navbar">
+  <div class="logo">NEON MUSIC</div>
+  <div>
+    <a href="#" style="color: white; text-decoration: none; margin-left: 20px; opacity: 0.8;">Home</a>
+    <a href="#" style="color: white; text-decoration: none; margin-left: 20px; opacity: 0.8;">About</a>
+  </div>
+</div>
 
-  <div class="card">
-    <div class="card-header">
-      <h2>🎵 Исполнители</h2>
-      <div class="input-group">
-        <input id="artName" placeholder="Имя артиста">
-        <input id="artGenre" placeholder="Жанр" style="width: 40%">
-        <button class="btn-primary" onclick="addArtist()">+</button>
-      </div>
+<div class="hero">
+  <h1>Music<br>Manager</h1>
+</div>
+
+<div class="glass-container">
+
+  <div>
+    <h2>Artists</h2>
+
+    <div style="margin-bottom: 25px;">
+      <input id="artName" placeholder="Artist Name">
+      <input id="artGenre" placeholder="Genre (e.g. Rock)">
+      <button class="btn-add" onclick="addArtist()">Create Artist</button>
     </div>
-    <div class="list-container" id="artistList">
+
+    <div class="list-wrap" id="artistList">
     </div>
   </div>
 
-  <div class="card hidden" id="songsCard">
-    <div class="card-header">
-      <h2 id="songsTitle">💿 Треки</h2>
-      <input type="hidden" id="currentArtistId">
-      <div class="input-group">
-        <input id="songTitle" placeholder="Название трека">
-        <input id="songDur" type="number" placeholder="Сек" style="width: 30%">
-        <button class="btn-primary" onclick="addSong()">+</button>
-      </div>
+  <div id="songsPanel" class="hidden">
+    <h2 id="songsTitle">Tracks</h2>
+    <input type="hidden" id="currentArtistId">
+
+    <div style="display: flex; gap: 10px; margin-bottom: 25px;">
+      <input id="songTitle" placeholder="Track Title" style="flex: 2;">
+      <input id="songDur" type="number" placeholder="Sec" style="flex: 1;">
     </div>
-    <div class="list-container" id="songList">
-      <div style="text-align: center; color: #9ca3af; margin-top: 20px;">
-        Выберите артиста слева, чтобы увидеть треки
+    <button class="btn-add" onclick="addSong()" style="margin-top: -15px; margin-bottom: 20px;">Add Track</button>
+
+    <div class="list-wrap" id="songList">
+      <div style="text-align: center; color: rgba(255,255,255,0.3); padding: 20px;">
+        Select an artist to view tracks
       </div>
     </div>
   </div>
@@ -206,32 +252,33 @@
 </div>
 
 <script>
-  // --- ЛОГИКА АРТИСТОВ ---
+  // --- ЛОГИКА (Такая же, как была, но с классами нового дизайна) ---
+
   async function loadArtists() {
-    const res = await fetch('/artist');
-    const data = await res.json();
-    const container = document.getElementById('artistList');
-    container.innerHTML = '';
+    try {
+      const res = await fetch('/artist');
+      const data = await res.json();
+      const container = document.getElementById('artistList');
+      container.innerHTML = '';
 
-    data.forEach(a => {
-      const div = document.createElement('div');
-      div.className = 'item';
-      div.id = `artist-${a.id}`;
-      div.onclick = (e) => {
-        // Если кликнули на кнопку удаления, не выбираем артиста
-        if(e.target.closest('.btn-icon')) return;
-        selectArtist(a.id, a.name, div);
-      };
+      data.forEach(a => {
+        const div = document.createElement('div');
+        div.className = 'item fade-in';
+        div.onclick = (e) => {
+          if(e.target.closest('.btn-icon')) return;
+          selectArtist(a.id, a.name, div);
+        };
 
-      div.innerHTML = `
-                    <div class="item-content">
-                        <span class="item-title">${a.name}</span>
-                        <span class="item-subtitle">${a.genre}</span>
-                    </div>
-                    <button class="btn-icon" onclick="deleteArtist(${a.id})">🗑</button>
-                `;
-      container.appendChild(div);
-    });
+        div.innerHTML = `
+                        <div class="text-group">
+                            <span class="main-text">${a.name}</span>
+                            <span class="sub-text">${a.genre}</span>
+                        </div>
+                        <button class="btn-icon" onclick="deleteArtist(${a.id})">DELETE</button>
+                    `;
+        container.appendChild(div);
+      });
+    } catch (e) { console.error(e); }
   }
 
   async function addArtist() {
@@ -250,24 +297,29 @@
   }
 
   async function deleteArtist(id) {
-    if(!confirm('Удалить артиста и все его песни?')) return;
+    if(!confirm('Delete artist?')) return;
     await fetch('/artist/' + id, { method: 'DELETE' });
     loadArtists();
-    document.getElementById('songsCard').classList.add('hidden');
-    document.getElementById('songList').innerHTML = '';
-    document.getElementById('songsTitle').innerText = '💿 Треки';
+    resetRightPanel();
   }
+
   function selectArtist(id, name, element) {
     document.querySelectorAll('.item').forEach(el => el.classList.remove('active'));
     element.classList.add('active');
 
-    const card = document.getElementById('songsCard');
-    card.classList.remove('hidden');
+    const panel = document.getElementById('songsPanel');
+    panel.classList.remove('hidden');
 
-    document.getElementById('songsTitle').innerText = `💿 ${name}`;
+    document.getElementById('songsTitle').innerText = `Tracks by ${name}`;
     document.getElementById('currentArtistId').value = id;
 
     loadSongs(id);
+  }
+
+  function resetRightPanel() {
+    document.getElementById('songsPanel').classList.add('hidden');
+    document.getElementById('songList').innerHTML = '';
+    document.getElementById('songsTitle').innerText = 'Tracks';
   }
 
   async function loadSongs(artistId) {
@@ -277,17 +329,16 @@
     container.innerHTML = '';
 
     if(data.length === 0) {
-      container.innerHTML = '<div style="text-align: center; color: #9ca3af; margin-top: 20px;">Нет треков</div>';
+      container.innerHTML = '<div style="text-align: center; color: rgba(255,255,255,0.3); margin-top: 20px;">No tracks yet</div>';
       return;
     }
 
     data.forEach(s => {
-      const durationFormatted = formatTime(s.duration);
       container.innerHTML += `
-                    <div class="item" style="cursor: default;">
-                        <div class="item-content">
-                            <span class="item-title">${s.title}</span>
-                            <span class="item-subtitle">⏱ ${durationFormatted}</span>
+                    <div class="item fade-in" style="cursor: default;">
+                        <div class="text-group">
+                            <span class="main-text">${s.title}</span>
+                            <span class="sub-text">⏱ ${formatTime(s.duration)}</span>
                         </div>
                         <button class="btn-icon" onclick="deleteSong(${s.id}, ${artistId})">✕</button>
                     </div>
@@ -314,7 +365,6 @@
 
     document.getElementById('songTitle').value = '';
     document.getElementById('songDur').value = '';
-    document.getElementById('songTitle').focus();
     loadSongs(artistId);
   }
 
