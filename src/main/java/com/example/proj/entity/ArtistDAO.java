@@ -1,6 +1,5 @@
 package com.example.proj.entity;
 
-
 import com.example.proj.repository.DBConnection;
 import java.sql.*;
 import java.util.ArrayList;
@@ -8,7 +7,7 @@ import java.util.List;
 
 public class ArtistDAO {
 
-    public void insertArtist(Artist artist) {
+    public static void insertArtist(Artist artist) {
         String sql = "INSERT INTO artist (name, genre) VALUES (?, ?)";
 
         try (Connection conn = DBConnection.getConnection();
@@ -16,20 +15,6 @@ public class ArtistDAO {
 
             ps.setString(1, artist.getName());
             ps.setString(2, artist.getGenre());
-            ps.executeUpdate();
-
-        } catch (Exception e) { e.printStackTrace(); }
-    }
-
-    public void updateArtist(Artist artist) {
-        String sql = "UPDATE artist SET name=?, genre=? WHERE id=?";
-
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-
-            ps.setString(1, artist.getName());
-            ps.setString(2, artist.getGenre());
-            ps.setInt(3, artist.getId());
             ps.executeUpdate();
 
         } catch (Exception e) { e.printStackTrace(); }
@@ -65,5 +50,8 @@ public class ArtistDAO {
         } catch (Exception e) { e.printStackTrace(); }
 
         return list;
+    }
+
+    public void updateArtist(Artist artist) {
     }
 }

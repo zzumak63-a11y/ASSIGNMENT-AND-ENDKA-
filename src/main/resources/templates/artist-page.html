@@ -1,154 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Artist Manager</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <style>
-        {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            min-height: 100vh;
-            font-family: 'Poppins', sans-serif;
-            background: radial-gradient(circle at top left, #5f00ff, #0b061a 45%, #000 80%);
-            color: white;
-            overflow-x: hidden;
-        }
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 25px 70px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-            background: rgba(0,0,0,0.25);
-            backdrop-filter: blur(20px);
-        }
-        .logo {
-            font-size: 22px;
-            font-weight: 900;
-            letter-spacing: 2px;
-            background: linear-gradient(90deg, #9f7bff, #ff4ecd);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .navbar a {
-            margin-left: 40px;
-            text-decoration: none;
-            color: white;
-            font-weight: 500;
-            opacity: 0.8;
-        }
-        .navbar a:hover {
-            opacity: 1;
-            text-shadow: 0 0 15px #9f7bff;
-        }
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .hero h1 {
-            font-size: 120px;
-            font-weight: 900;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            background: linear-gradient(120deg, #ffffff, #9f7bff, #ff4ecd);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: glow 3s infinite alternate;
-        }
-        @keyframes glow {
-            from { text-shadow: 0 0 20px #9f7bff; }
-            to { text-shadow: 0 0 60px #ff4ecd; }
-        }
-        .container {
-            width: 85%;
-            margin: -200px auto 100px;
-            padding: 50px;
-            border-radius: 30px;
-            background: linear-gradient(
-                    135deg,
-                    rgba(255,255,255,0.18),
-                    rgba(255,255,255,0.05)
-            );
-            backdrop-filter: blur(35px);
-            box-shadow: 0 0 80px rgba(159,123,255,0.4);
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th {
-            padding: 22px;
-            font-size: 20px;
-            text-transform: uppercase;
-            background: rgba(255,255,255,0.1);
-            letter-spacing: 2px;
-        }
-        td {
-            padding: 20px;
-            font-size: 18px;
-            border-bottom: 1px solid rgba(255,255,255,0.15);
-        }
-        tr {
-            transition: 0.3s;
-        }
-        tr:hover {
-            transform: scale(1.02);
-            background: rgba(255,255,255,0.12);
-            box-shadow: 0 0 25px rgba(159,123,255,0.6);
-        }
-        a {
-            color: #9f7bff;
-            font-weight: 700;
-            text-decoration: none;
-        }
-        a:hover {
-            color: white;
-            text-shadow: 0 0 15px #9f7bff;
-        }
-        audio {
-            width: 200px;
-            filter: drop-shadow(0 0 10px #9f7bff);
-        }
-    </style>
+    <title>Artists</title>
 </head>
 <body>
-<div class="navbar">
-    <div class="logo">THYNK UNLIMITED</div>
-    <div>
-        <a href="#">Home</a>
-        <a href="#">Artists</a>
-        <a href="#">Content</a>
-    </div>
-</div>
-
-<div class="hero">
-    <h1>Artists</h1>
-</div>
-<div class="container">
-    <h1>Artists - Click to see Songs</h1>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Gender</th>
-        </tr>
-        <tr><td>1</td><td><a href="weeknd.html">The Weeknd</a></td><td>Male</td></tr>
-        <tr><td>2</td><td><a href="Dua Lipa.html">Dua Lipa</a></td><td>Female</td></tr>
-        <tr><td>3</td><td><a href="Billie Eilish.html">Billie Eilish</a></td><td>Female</td></tr>
-        <tr><td>4</td><td><a href="Travis Scott.html">Travis Scott</a></td><td>Male</td></tr>
-        <tr><td>5</td><td><a href="Ed Sheeran.html">Ed Sheeran</a></td><td>Male</td></tr>
-        <tr><td>6</td><td><a href="Ariana Grande.html">Ariana Grande</a></td><td>Female</td></tr>
-        <tr><td>7</td><td><a href="Bruno Mars.html">Bruno Mars</a></td><td>Male</td></tr>
-    </table>
-</div>
+<h1>Artists</h1>
+<ul>
+    <li th:each="artist : ${artists}">
+        <span th:text="${artist.name}">Artist Name</span>
+        <span th:text="${artist.genre}">Genre</span>
+        <form th:action="@{/artist/{id}/music(id=${artist.id})}" method="post">
+            <input type="text" name="title" placeholder="Song Title">
+            <input type="text" name="genre" placeholder="Song Genre">
+            <button type="submit">Add Song</button>
+        </form>
+        <form th:action="@{/artist/{id}(id=${artist.id})}" method="post">
+            <button type="submit">Delete Artist</button>
+        </form>
+    </li>
+</ul>
 </body>
 </html>
